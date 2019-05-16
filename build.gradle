@@ -1,0 +1,40 @@
+buildscript {
+    ext {
+        springBootVersion = "2.1.4.RELEASE"
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+allprojects {
+    group 'com.ralink'
+    version '1.0-SNAPSHOT'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'eclipse'
+    apply plugin: 'org.springframework.boot'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+        implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+
+        compileOnly 'org.projectlombok:lombok:1.18.8'
+        annotationProcessor 'org.projectlombok:lombok:1.18.8'
+
+        testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+        testImplementation group: 'junit', name: 'junit', version: '4.12'
+    }
+
+    sourceCompatibility = 1.8
+}

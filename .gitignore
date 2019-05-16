@@ -1,0 +1,31 @@
+# Eclipse
+/**/.classpath/
+/**/.project/
+/**/.settings/
+/**/.factorypath/
+/**/.springbeans/
+
+# Intellij
+/**/.idea/
+/**/*.iml
+/**/*.iws
+/**/out/
+/**/classes/
+
+# Gradle
+/**/.gradle/
+/**/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# npm
+/**/npm-debug.log*
+/**/node_modules/
+.project
+
+*.classpath
+/**/bin/
+/**/src/main/generated/
+/src/pipeline.gdsl
+
+# Visual Studio Code
+microservice.iml

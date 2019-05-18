@@ -4,3 +4,15 @@ services:
     build: ./gateway
     ports:
       - 8080:8080
+  usrdb:
+    image: postgres
+    environment:
+      - POSTGRES_USER=ralink
+      - POSTGRES_PASSWORD=ralink
+      - POSTGRES_DB=usrdb
+    volumes:
+      - my_dbdata:/var/lib/postgresql/data
+    ports:
+      - 5000:5432
+volumes:
+  my_dbdata:

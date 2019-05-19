@@ -1,0 +1,16 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'org.springframework.boot'
+
+group 'com.ralink'
+version '1.0-SNAPSHOT'
+
+mainClassName = 'com.ralink.eureka_server.EurekaApplication'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-server:2.1.1.RELEASE')
+}

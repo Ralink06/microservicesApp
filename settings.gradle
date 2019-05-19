@@ -1,4 +1,6 @@
 rootProject.name = 'microservice'
 
 include 'gateway'
+include 'user_app'
+include 'eureka_server'
 

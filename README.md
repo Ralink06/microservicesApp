@@ -3,7 +3,9 @@ Microservices Approach
 
 Steps:
                 
-    1.Gateway API - ZUUL with Angular UI
+    1. IN PRO - Gateway API - ZUUL with Angular UI
+    2. IN PRO - User Management API
+    3. IN PRO - Eureka Server
 
 Build and Run
 --------------

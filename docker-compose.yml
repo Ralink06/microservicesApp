@@ -1,17 +1,25 @@
 version: '3'
 services:
-  gateway:
-    build: ./gateway
-    ports:
-      - 8080:8080
+#  gateway:
+#    build: ./gateway
+#    ports:
+#      - 8080:8080
+#  eureka_server:
+#    build: ./eureka_server
+#    ports:
+#      - 8761:8761
+#  user_app:
+#    build: ./user_app
+#    ports:
+#      - 8081:8081
+#    environment:
+#      - spring.datasource.url=jdbc:postgresql://usrdb:5432/usrdb
   usrdb:
     image: postgres
     environment:
       - POSTGRES_USER=ralink
       - POSTGRES_PASSWORD=ralink
       - POSTGRES_DB=usrdb
-    volumes:
-      - my_dbdata:/var/lib/postgresql/data
     ports:
       - 5000:5432
 volumes:

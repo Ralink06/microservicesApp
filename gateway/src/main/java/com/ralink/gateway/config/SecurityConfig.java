@@ -1,5 +1,8 @@
 package com.ralink.gateway.config;
 
+import com.ralink.gateway.config.jwt.JwtAuthenticationContextFilter;
+import com.ralink.gateway.config.jwt.JwtAuthenticationFilter;
+import com.ralink.gateway.service.TokenAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -13,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -23,9 +27,12 @@ import org.springframework.web.filter.CorsFilter;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
+    private final TokenAuthenticationService tokenAuthenticationService;
 
-    public SecurityConfig(@Qualifier("userServiceCustomImplementation") final UserDetailsService userDetailsService) {
+    public SecurityConfig(@Qualifier("userServiceCustomImplementation") final UserDetailsService userDetailsService,
+                          final TokenAuthenticationService tokenAuthenticationService) {
         this.userDetailsService = userDetailsService;
+        this.tokenAuthenticationService = tokenAuthenticationService;
     }
 
     @Override
@@ -46,13 +53,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .anonymous().disable()
                 .authorizeRequests()
-                .antMatchers("/user/register**").permitAll();
+                .antMatchers("/user/register**")
+                .permitAll();
+
+        JwtAuthenticationContextFilter jJwtAuthenticationContextFilter = new JwtAuthenticationContextFilter(tokenAuthenticationService);
+        JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(tokenAuthenticationService);
+        http.addFilterBefore(jJwtAuthenticationContextFilter, UsernamePasswordAuthenticationFilter.class)
+                // And filter other requests to check the presence of JWT in header
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
     public BCryptPasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
     }
+
+
+
 
     @Bean
     public FilterRegistrationBean corsFilter() {

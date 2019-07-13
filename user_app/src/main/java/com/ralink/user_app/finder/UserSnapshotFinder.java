@@ -16,6 +16,6 @@ public class UserSnapshotFinder {
     }
 
     public Optional<UserSnapshot> findByUsername(final String username) {
-        return Optional.of(userRepository.findByEmail(username).toSnapshot());
+        return Optional.ofNullable(userRepository.findByEmail(username).toSnapshot());
     }
 }

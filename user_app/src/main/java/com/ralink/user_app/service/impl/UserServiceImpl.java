@@ -1,4 +1,4 @@
-package com.ralink.user_app.service;
+package com.ralink.user_app.service.impl;
 
 import com.ralink.user_app.factory.UserFactory;
 import com.ralink.user_app.input.CreateUserInput;
@@ -8,17 +8,18 @@ import com.ralink.user_app.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
+public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
     private final UserFactory userFactory;
 
-    public UserService(final UserRepository userRepository, final UserFactory userFactory) {
+    public UserServiceImpl(final UserRepository userRepository, final UserFactory userFactory) {
         this.userRepository = userRepository;
         this.userFactory = userFactory;
     }
 
-    public UserSnapshot createUser(CreateUserInput input) {
+    @Override
+    public UserSnapshot createUser(final CreateUserInput input) {
         final User user = userFactory.create(input);
 
         return userRepository.save(user)

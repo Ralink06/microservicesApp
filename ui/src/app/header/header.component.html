@@ -1,0 +1,16 @@
+<div class="header container-fluid fixed-top">
+  <div class="d-flex justify-content-between my-3">
+    <div class="d-none d-md-block">
+      <h3 class="clickable" routerLink="">Sport Event Application</h3>
+    </div>
+    <div class="d-md-none pl-2 align-middle">
+      <i class="fa fa-heartbeat icon navy clickable" aria-hidden="true" routerLink=""></i>
+    </div>
+    <div class="col-6 d-flex align-items-center justify-content-end">
+      <a class="mx-2 d-none d-md-block" routerLink="/register">Create account</a>
+      <span class="d-md-none fa fa-user-plus navy clickable mx-2 icon-nav" routerLink="/register"></span>
+      <a class="mx-2 d-none d-md-block clickable" (click)="login()">Login</a>
+      <span class="d-md-none fa fa-sign-in navy clickable ml-2 icon-nav" (click)="login()" routerLink=""></span>
+    </div>
+  </div>
+</div>

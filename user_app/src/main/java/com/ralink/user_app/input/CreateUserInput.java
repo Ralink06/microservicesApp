@@ -1,14 +1,22 @@
 package com.ralink.user_app.input;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.*;
+
+import javax.validation.constraints.NotNull;
 
 @Getter
-@AllArgsConstructor
+@Setter
 public class CreateUserInput {
 
-    private final String email;
-    private final String firstName;
-    private final String lastName;
-    private final String password;
+    @NotNull
+    private String email;
+
+    @NotNull
+    private String firstName;
+
+    @NotNull
+    private String lastName;
+
+    @NotNull
+    private String password;
 }

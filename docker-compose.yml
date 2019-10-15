@@ -1,31 +1,31 @@
 version: '3'
 services:
-  gateway:
-    build: ./gateway
-    ports:
-      - 8080:8080
-    environment:
-      - eureka.client.service-url.defaultZone= http://eureka-server:8761/eureka/
-  eureka-server:
-    build: ./eureka_server
-    ports:
-      - 8761:8761
-  user-app:
-    build: ./user_app
-    ports:
-      - 8081:8081
-    environment:
-      - spring.datasource.url=jdbc:postgresql://usrdb:5432/usrdb
-      - server.port=8081
-      - eureka.client.service-url.defaultZone= http://eureka-server:8761/eureka/
-  user-app-2:
-    build: ./user_app
-    ports:
-      - 8082:8082
-    environment:
-      - spring.datasource.url=jdbc:postgresql://usrdb:5432/usrdb
-      - server.port=8082
-      - eureka.client.service-url.defaultZone= http://eureka-server:8761/eureka/
+#  gateway:
+#    build: ./gateway
+#    ports:
+#      - 8080:8080
+#    environment:
+#      - eureka.client.service-url.defaultZone= http://eureka-server:8761/eureka/
+#  eureka-server:
+#    build: ./eureka_server
+#    ports:
+#      - 8761:8761
+#  user-app:
+#    build: ./user_app
+#    ports:
+#      - 8081:8081
+#    environment:
+#      - spring.datasource.url=jdbc:postgresql://usrdb:5432/usrdb
+#      - server.port=8081
+#      - eureka.client.service-url.defaultZone= http://eureka-server:8761/eureka/
+#  user-app-2:
+#    build: ./user_app
+#    ports:
+#      - 8082:8082
+#    environment:
+#      - spring.datasource.url=jdbc:postgresql://usrdb:5432/usrdb
+#      - server.port=8082
+#      - eureka.client.service-url.defaultZone= http://eureka-server:8761/eureka/
   usrdb:
     image: postgres
     environment:

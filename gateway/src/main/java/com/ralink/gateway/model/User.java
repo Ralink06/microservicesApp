@@ -1,7 +1,7 @@
 package com.ralink.gateway.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,16 +11,16 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Getter
-@AllArgsConstructor
+@Setter
 public class User implements UserDetails {
 
-    private final Long id;
-    private final String firstName;
-    private final String lastName;
-    private final String password;
-    private final boolean active;
-    private final String email;
-    private final Set<Role> roles;
+    private Long id;
+    private String firstName;
+    private String lastName;
+    private String password;
+    private boolean active;
+    private String email;
+    private Set<Role> roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -37,17 +37,17 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override

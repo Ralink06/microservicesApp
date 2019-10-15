@@ -10,8 +10,7 @@ zuul:
 
 eureka:
   client:
-    service-url:
-      default-zone: http://localhost:8761/eureka/
+    registerWithEureka: false
 security:
   jwt:
     expirationTime: 8640000000

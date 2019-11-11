@@ -7,10 +7,8 @@
       <i class="fa fa-heartbeat icon navy clickable" aria-hidden="true" routerLink=""></i>
     </div>
     <div class="col-6 d-flex align-items-center justify-content-end">
-      <a class="mx-2 d-none d-md-block" [routerLink]="[ {outlets: { modal: 'registration' } } ]">Create account</a>
-      <span class="d-md-none fa fa-user-plus navy clickable mx-2 icon-nav" routerLink="/register"></span>
-      <a class="mx-2 d-none d-md-block clickable" (click)="login()">Login</a>
-      <span class="d-md-none fa fa-sign-in navy clickable ml-2 icon-nav" (click)="login()" routerLink=""></span>
+      <a class="mx-2 d-none d-md-block" [routerLink]="['/', {outlets: { modal: ['registration'] } } ]">Create account</a>
+      <a class="mx-2 d-none d-md-block clickable">Login</a>
     </div>
   </div>
 </div>

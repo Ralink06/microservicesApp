@@ -29,6 +29,7 @@ export class ValidationMsgComponent {
       'minValue': `Minimum value  ${validatorValue != null ? validatorValue.requiredValue : 0}`,
       'valueLowerThanPeopleGot': `Value can not be lower than people got`,
       'notFuture': `The date must be in future`,
+      'emailUsed': `This email is already used`
     };
 
     return config[validatorName];

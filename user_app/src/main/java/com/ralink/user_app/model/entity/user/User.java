@@ -23,17 +23,22 @@ import java.util.Set;
 @Table(name = "\"user\"")
 public class User {
 
+    public static final int NAME_MAX_LENGTH = 60;
+    public static final int NAME_MIN_LENGTH = 2;
+    public static final int EMAIL_MAX_LENGTH = 255;
+    public static final int PASSWORD_MAX_LENGTH = 255;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
-    @Size(min = 2, max = 60)
+    @Size(min = NAME_MIN_LENGTH, max = NAME_MAX_LENGTH)
     @Column(nullable = false)
     private String firstName;
 
     @NotBlank
-    @Size(min = 2, max = 60)
+    @Size(min = NAME_MIN_LENGTH, max = NAME_MAX_LENGTH)
     @Column(nullable = false)
     private String lastName;
 
@@ -47,6 +52,7 @@ public class User {
     @NotBlank
     @Email
     @Column(unique = true, nullable = false)
+    @Size(max = EMAIL_MAX_LENGTH)
     private String email;
 
     @Enumerated(EnumType.STRING)

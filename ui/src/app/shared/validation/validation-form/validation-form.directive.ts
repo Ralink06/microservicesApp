@@ -19,15 +19,7 @@ export class ValidationFormDirective {
         this.submitForm.emit(this.form.value);
       } else {
         this.formValidationService.markInvalidAsTouched(this.form);
-        this.scrollFirstInvalidIntoView();
       }
     }
-  }
-
-  scrollFirstInvalidIntoView () {
-    setTimeout(() => {
-      let parent = (this.element.nativeElement as Element).parentElement;
-      while (parent && parent.nodeName !== 'FORM') { parent = parent.parentElement; }
-    });
   }
 }

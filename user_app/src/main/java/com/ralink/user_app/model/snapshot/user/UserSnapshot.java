@@ -1,6 +1,5 @@
 package com.ralink.user_app.model.snapshot.user;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ralink.user_app.model.entity.user.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

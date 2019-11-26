@@ -2,9 +2,11 @@ package com.ralink.user_app.output;
 
 import com.ralink.user_app.model.entity.user.Role;
 import com.ralink.user_app.model.snapshot.user.UserSnapshot;
+import lombok.Getter;
 
 import java.util.Set;
 
+@Getter
 public class CreateUserOutput {
 
     private String firstName;

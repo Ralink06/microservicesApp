@@ -1,5 +1,6 @@
 package com.ralink.user_app.finder;
 
+import com.ralink.user_app.model.entity.user.User;
 import com.ralink.user_app.model.snapshot.user.UserSnapshot;
 import com.ralink.user_app.repository.UserRepository;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,7 @@ public class UserSnapshotFinder {
     }
 
     public Optional<UserSnapshot> findByUsername(final String username) {
-        return Optional.ofNullable(userRepository.findByEmail(username).toSnapshot());
+        return Optional.ofNullable(userRepository.findByEmail(username))
+                .map(User::toSnapshot);
     }
 }

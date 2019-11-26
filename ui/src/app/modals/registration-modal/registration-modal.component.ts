@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../user/user.service";
 import {UserRegistration} from "../../user/model/user-registration";
+import {Observable, of} from "rxjs";
+import {catchError, map} from "rxjs/operators";
 
 @Component({
   selector: 'app-registration-modal',
@@ -22,13 +24,13 @@ export class RegistrationModalComponent implements OnInit {
     this.form = this.fb.group({
       firstName: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(60)])],
       lastName: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(60)])],
-      email: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(255), Validators.email])],
+      email: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(255), Validators.email]],
       password: ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(255)])]
     })
   }
 
   register() {
-    if(this.form.valid) {
+    if (this.form.valid) {
       const registerData: UserRegistration = {
         firstName: this.form.value.firstName,
         lastName: this.form.value.lastName,
@@ -36,13 +38,21 @@ export class RegistrationModalComponent implements OnInit {
         password: this.form.value.password
       };
       this.userService.registerUser(registerData)
-        .subscribe(value => console.log(value),
-          error => this.handleBadRequest(error))
+        .subscribe(value => console.log(value))
     }
   }
 
-  handleBadRequest(error) {
-    error.error.errors.forEach(error =>
-      this.form.get(error.field).setErrors({'emailUsed': true}));
+  userValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<{ [key: string]: any } | null> => {
+      return this.userService.checkEmailNotTaken(control.value)
+        .pipe(
+          map(res => {
+            return {'emailUsed': true}
+          }),
+          catchError(err => {
+            return of();
+          })
+        )
+    };
   }
 }

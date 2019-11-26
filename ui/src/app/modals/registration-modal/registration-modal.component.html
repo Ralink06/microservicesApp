@@ -1,11 +1,11 @@
-<div class="modal-header">
-  <h4 class="modal-title" id="modal-basic-title">Registration</h4>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<div class="modal-body">
-  <form [formGroup]="form" novalidate>
+<form [formGroup]="form" novalidate>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Registration</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
     <div class="form-group">
       <label class="required" for="firstName">First name: </label>
       <input id="firstName" type="text" class="form-control" formControlName="firstName" required>
@@ -26,12 +26,11 @@
       <input id="password" type="password" class="form-control" formControlName="password">
       <app-validation-msg [control]="form.controls['password']"></app-validation-msg>
     </div>
+  </div>
+  <div class="modal-footer">
     <div class="form-group">
       <button type="submit" class="btn btn-primary btn-block" (submitForm)="register()" [validateForm]="form">Submit
       </button>
     </div>
-  </form>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark">Save</button>
-</div>
+  </div>
+</form>

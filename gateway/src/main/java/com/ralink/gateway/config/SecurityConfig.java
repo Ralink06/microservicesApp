@@ -61,6 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/user/register**").permitAll()
+                .antMatchers(HttpMethod.GET, "/user/find**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/**").permitAll();
 
         JwtAuthenticationContextFilter jJwtAuthenticationContextFilter = new JwtAuthenticationContextFilter(tokenAuthenticationService);

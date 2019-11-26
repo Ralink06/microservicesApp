@@ -7,10 +7,10 @@ zuul:
       path: /user/**
       serviceId: user_app
       strip-prefix: false
-
 eureka:
   client:
-    registerWithEureka: false
+    service-url:
+      default-zone: http://localhost:8761/eureka/
 security:
   jwt:
     expirationTime: 8640000000

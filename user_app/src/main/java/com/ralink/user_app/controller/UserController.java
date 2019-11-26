@@ -14,6 +14,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RequestMapping(value = "/user")
 @RestController
@@ -39,6 +40,14 @@ public class UserController {
 
         return ResponseEntity.ok(userSnapshot);
     }
+
+    @GetMapping(value = "/find/{username}")
+    public ResponseEntity isUsernameTaken(@PathVariable("username") final String username) {
+        Optional<UserSnapshot> userSnapshot = userSnapshotFinder.findByUsername(username);
+
+        return (userSnapshot.isPresent() ? ResponseEntity.ok() : ResponseEntity.notFound()).build();
+    }
+
 
     @InitBinder("createUserInput")
     private void initBinder(WebDataBinder binder) {

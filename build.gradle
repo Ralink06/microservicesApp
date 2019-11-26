@@ -30,6 +30,7 @@ subprojects {
         implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
         implementation("com.google.code.gson:gson:2.8.2")
         compileOnly 'org.projectlombok:lombok:1.18.8'
+        compile ("org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}")
         annotationProcessor 'org.projectlombok:lombok:1.18.8'
 
         testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
